@@ -27,16 +27,16 @@ public class Board {
         Board.boardSize = size;
     }
 
+    public char[][] getBoard() {
+        return board;
+    }
+
     public void initializeGrid() {
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
                 this.board[i][j] = '~';
             }
         }
-    }
-
-    public char[][] getBoard() {
-        return board;
     }
 
     public void placeShips(Player player) {
@@ -55,7 +55,7 @@ public class Board {
             Submarine.placeShipRandomly(this, Submarine);
             patrolBoat.placeShipRandomly(this, patrolBoat);
         }else {
-            System.out.println(player.getName() + ", how do you prefer to place your ships? (random / manual");
+            System.out.println(player.getName() + ", how do you prefer to place your ships? (random / manual)");
             String line = scanner.nextLine();
             if (line.equalsIgnoreCase("manual")) {
                 airCraftCarrier.placeShipsByPlayer(player, this, airCraftCarrier);
@@ -73,8 +73,8 @@ public class Board {
 
     public boolean placeShip(Ship ship, int row, int col, boolean horizontal) {
         int size = ship.getSize();
-        if (row + size > boardSize || col + size > boardSize) return false;
         if (horizontal) {
+            if (col + size > boardSize) return false;
             for (int i = col; i < col + size; i++) {
                 if (board[row][i] != '~') return false;
             }
@@ -82,6 +82,7 @@ public class Board {
                 board[row][i] = '#';
             }
         } else {
+            if (row + size > boardSize) return false;
             for (int i = row; i < row + size; i++) {
                 if (board[i][col] != '~') return false;
             }

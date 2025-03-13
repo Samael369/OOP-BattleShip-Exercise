@@ -33,7 +33,7 @@ public class Ship {
         String direction = input.nextLine();
         int row = Coordinate.parseIntRow(coordinates);
         int col = Coordinate.parseIntCol(coordinates);
-        boolean horizontal = direction.equals("horizontal");
+        boolean horizontal = direction.equalsIgnoreCase("horizontal");
         boolean placed = board.placeShip(ship, row, col, horizontal);
         while (!placed) {
             board.printBoard();
