@@ -49,8 +49,8 @@ public class Game {
         Board player2Board = new Board();
         Board player1TrackingBoard = new Board();
         Board player2TracingBoard = new Board();
-        player1Board.placeShips();
-        player2Board.placeShips();
+        player1Board.placeShips(firstPlayer);
+        player2Board.placeShips(secondPlayer);
         boolean playerTurn = true;
         do {
             if (playerTurn) {

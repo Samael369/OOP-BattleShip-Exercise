@@ -7,6 +7,10 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String makeMove() {
         System.out.println("Player " + name + ", enter the coordinates: ");
         Scanner scanner = new Scanner(System.in);

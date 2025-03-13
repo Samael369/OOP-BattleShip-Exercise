@@ -39,16 +39,36 @@ public class Board {
         return board;
     }
 
-    public void placeShips() {
+    public void placeShips(Player player) {
+        Scanner scanner = new Scanner(System.in);
         Ship airCraftCarrier = new Ship(5);
+        airCraftCarrier.setName("Air Craft Carrier");
         Ship battleShip = new Ship(4);
+        battleShip.setName("Battle Ship");
         Ship Submarine = new Ship(3);
+        Submarine.setName("Submarine");
         Ship patrolBoat = new Ship(2);
-
-        airCraftCarrier.placeShipRandomly(this, airCraftCarrier);
-        battleShip.placeShipRandomly(this, battleShip);
-        Submarine.placeShipRandomly(this, Submarine);
-        patrolBoat.placeShipRandomly(this, patrolBoat);
+        patrolBoat.setName("Patrol Boat");
+        if (player.getName().equalsIgnoreCase("computer")) {
+            airCraftCarrier.placeShipRandomly(this, airCraftCarrier);
+            battleShip.placeShipRandomly(this, battleShip);
+            Submarine.placeShipRandomly(this, Submarine);
+            patrolBoat.placeShipRandomly(this, patrolBoat);
+        }else {
+            System.out.println(player.getName() + ", how do you prefer to place your ships? (random / manual");
+            String line = scanner.nextLine();
+            if (line.equalsIgnoreCase("manual")) {
+                airCraftCarrier.placeShipsByPlayer(player, this, airCraftCarrier);
+                battleShip.placeShipsByPlayer(player, this, battleShip);
+                Submarine.placeShipsByPlayer(player, this, Submarine);
+                patrolBoat.placeShipsByPlayer(player, this, patrolBoat);
+            } else if (line.equalsIgnoreCase("random")) {
+                airCraftCarrier.placeShipRandomly(this, airCraftCarrier);
+                battleShip.placeShipRandomly(this, battleShip);
+                Submarine.placeShipRandomly(this, Submarine);
+                patrolBoat.placeShipRandomly(this, patrolBoat);
+            }
+        }
     }
 
     public boolean placeShip(Ship ship, int row, int col, boolean horizontal) {
@@ -106,6 +126,10 @@ public class Board {
                         break;
                     case MISS:
                         System.out.print(RED + MISS + RESET);
+                        System.out.print(" ");
+                        break;
+                    case SHIP:
+                        System.out.print(GREEN + SHIP + RESET);
                         System.out.print(" ");
                         break;
                     default:
