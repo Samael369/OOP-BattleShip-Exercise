@@ -111,13 +111,13 @@ public class Board {
     }
 
     public void printBoard() {
-        System.out.print("  ");
+        System.out.print("   ");
         for (int i = 0; i < boardSize; i++) {
             System.out.print((char) ('A' + i) + " ");
         }
         System.out.println();
         for (int i = 0; i < boardSize; i++) {
-            System.out.print(i);
+            System.out.printf("%2s", i);
             System.out.print(" ");
             for (int j = 0; j < boardSize; j++) {
                 switch (board[i][j]) {
@@ -138,9 +138,10 @@ public class Board {
                         System.out.print(" ");
                 }
             }
-            System.out.println(i);
+            System.out.printf("%-2s", i);
+            System.out.println();
         }
-        System.out.print("  ");
+        System.out.print("   ");
         for (int i = 0; i < boardSize; i++) {
             System.out.print((char) ('A' + i) + " ");
         }

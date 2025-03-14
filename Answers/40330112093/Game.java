@@ -6,9 +6,7 @@ public class Game {
     byte multiPlayer = 2;
 
     public byte gameMode() {
-        System.out.println("Please choose the game mode: ");
-        System.out.println("1: Single player");
-        System.out.println("2: Multi player");
+        System.out.println("Please choose the game mode:\n1: single player\n2: multi player");
         return scanner.nextByte();
     }
 
@@ -66,6 +64,7 @@ public class Game {
                 player2TracingBoard.printBoard();
                 String coordinate = secondPlayer.makeMove();
                 while (!Coordinate.inputValidator(coordinate, player2TracingBoard)) {
+                    System.out.println("\u001B[31m" + "Invalid input!" + "\u001B[0m");
                     coordinate = secondPlayer.makeMove();
                 }
                 System.out.print(player2.equalsIgnoreCase("computer") ? "computer " : "You ");
